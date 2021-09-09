@@ -1,38 +1,22 @@
 ## Summary
-We encountered an error when trying to use @verida/datastore version 0.7.4
-
-```
-index.js:64 Uncaught (in promise) Error: A password is required for encryption or decryption.
-```
+Verida app user.getAppConfig() return false instead of configuration object when initiated without specifying appName using Verida.setConfig()
 
 ## Reproduction
+1. Generate DID and signing signature from another app. In my case, I use @verida/vault-auth-client
+2. Update DID and SIGNATURE constant in App.svelte
+3. run npm install to restore dependencies
+4. open https://localhost:8080 in your browser 
+5. Hit login to sign in and get configuration object
 
-1. Install dependencies
-```
-npm install
-```
+## Expected
+Configuration object printed on the screen
 
-2. Start development server
-```
-npm run dev
-```
+## Actual 
+Configuration object is false
 
-3. Open web browser and navigate to the development server at [http://localhost:8080](http://localhost:8080)
-
-4. Click on connect button to connect
-
-5. Login with metamask
-
-## Expectation
-
-Connect to app using metamask successfully
-
-
-## Actual
-
-Receiving message in the browser console
-```
-index.js:64 Uncaught (in promise) Error: A password is required for encryption or decryption.
+## Workaround
+Specify appname using Verida.setConfig({appName: "someappname"})
+```typescript
+Verida.setConfig({ appName: appname });
 ```
 
-This error seems to be thrown from the crypto-pouch > garbados-crypt package

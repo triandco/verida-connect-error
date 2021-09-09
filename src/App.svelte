@@ -6,6 +6,9 @@
 	let app;
 	let appConfig;
 	let appName = "..";
+
+	const DID = '<paste your DID here>';
+	const SIGNATURE = '<paste your signature here>';
 	async function createApp(){
 	
 		// Verida.setConfig({
@@ -13,8 +16,8 @@
 		// });
 	
 		app = new Verida({
-			did: '..',
-			signature: "..",
+			did: DID,
+			signature: SIGNATURE,
 			appName: appName,
 		});
 		await app.connect(true);
