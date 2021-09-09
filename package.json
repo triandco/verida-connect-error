@@ -41,7 +41,7 @@
 	},
 	"dependencies": {
 		"serve": "^11.3.2",
-		"@verida/datastore": "0.7.4"
+		"@verida/datastore": "0.7.5"
 	},
 	"browserslist": [
 		"defaults"

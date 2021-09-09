@@ -1,31 +1,36 @@
 <script lang="ts">
-	let name: string = 'world';
+	let name: string | undefined = undefined;
 
 	import Verida from '@verida/datastore';
-
+	let receiver;
+	let app;
+	let appConfig;
+	let appName = "..";
 	async function createApp(){
-		// Fetch the users web3Provider and address
-		const web3Provider = await Verida.Helpers.wallet.connectWeb3('ethr');
-		const address = await web3Provider.getAddress('ethr');
 	
-		Verida.setConfig({
-			appName: 'Your Application Name'
-		});
+		// Verida.setConfig({
+		// 	appName: appName
+		// });
 	
-		let app = new Verida({
-				chain: 'ethr',
-				address: address,
-				web3Provider: web3Provider
+		app = new Verida({
+			did: '..',
+			signature: "..",
+			appName: appName,
 		});
 		await app.connect(true);
 		name = app.user.did;
+		appConfig = await app.user.getAppConfig();
 	}
-
+	
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<button on:click={createApp}>Click</button>
+	<button on:click={createApp}>Login</button>
+	{#if name !== undefined}
+	<p>Hello {name}</p>
+
+	{JSON.stringify(appConfig)}
+	{/if}
 </main>
 
 <style lang="scss">
