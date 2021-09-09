@@ -4,7 +4,8 @@ Verida app user.getAppConfig() return false instead of configuration object when
 ## Reproduction
 1. Generate DID and signing signature from another app. In my case, I use @verida/vault-auth-client
 2. Update DID and SIGNATURE constant in App.svelte
-3. run npm install to restore dependencies
+3. run ```npm install``` to restore dependencies
+4. Start app with ```npm run dev```
 4. open https://localhost:8080 in your browser 
 5. Hit login to sign in and get configuration object
 
